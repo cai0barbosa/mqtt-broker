@@ -1,0 +1,12 @@
+version: "3.1"
+services:
+    broker_mqtt:
+        image: eclipse-mosquitto:2.0.11-openssl
+        container_name: broker_mqtt
+        volumes:
+          - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+        ports:
+          - "${MQTT_PORT}:1883"
+          - "${MQTT_TLS_PORT}:8883"
+        extra_hosts:
+           - "host.docker.internal:host-gateway"
